@@ -4,11 +4,11 @@ import {View, Text} from 'react-native'
 
 const ChatScreen = () => {
     return (
-        <view style={{flex:1 , alignItems: 'center', justifyContent: 'cener'}}>
+        <View>
             <Text>
                 ChatScreen
             </Text>
-        </view>
+        </View>
     );
 };
 

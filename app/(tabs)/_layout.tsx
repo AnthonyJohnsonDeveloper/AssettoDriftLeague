@@ -8,10 +8,8 @@ import { NavigationContainer } from "@react-navigation/native";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
-  const Tab = createTabNavigator();
 
   return (
-    <NavigationContainer>
       <Tabs
         screenOptions={{
           tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
@@ -55,10 +53,5 @@ export default function TabLayout() {
           }}
         />
       </Tabs>
-    </NavigationContainer>
   );
-}
-
-function createTabNavigator() {
-  ;
 }
