@@ -1,49 +1,55 @@
-import { Image, StyleSheet, Platform } from 'react-native';
-
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import { Image, StyleSheet, Platform } from "react-native";
+import {Link, Redirect} from "expo-router";
+import { HelloWave } from "@/components/HelloWave";
+import ParallaxScrollView from "@/components/ParallaxScrollView";
+import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
+import React from "react";
 
 export default function HomeScreen() {
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
+      headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
       headerImage={
         <Image
-          source={require('@/assets/images/partial-react-logo.png')}
+          source={require("@/assets/images/partial-adl-logo.png")}
           style={styles.reactLogo}
         />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
+      }
+    >
+      <ThemedView
+        style={[styles.titleContainer, { backgroundColor: "#FFFF00" }]}
+      >
+        <ThemedText type="title" style={{ flexGrow: 1 }}>
+          Welcome to the ADL Community App!
+        </ThemedText>
         <HelloWave />
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools.
+        <ThemedText type="subtitle" style={{ flexGrow: 1 }}>
+          Meetup:
+        </ThemedText>
+        <ThemedText style={{ flexGrow: 1 }}>
+          Meetup with fellow ADL memebers at various motorsport events such as
+          Formula Drift or Final Bout to name a few.
         </ThemedText>
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
+        <ThemedText type="subtitle" style={{ flexGrow: 1 }}>
+          Check-in:
+        </ThemedText>
+        <ThemedText style={{ flexGrow: 1 }}>
+          Check in to find out which members are attending events as either a
+          spectator or driver to show support for your fellow ADL members.
         </ThemedText>
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
+        <ThemedText type="subtitle" style={{ flexGrow: 1 }}>
+          Chat:
+        </ThemedText>
+        <ThemedText style={{ flexGrow: 1 }}>
+          Everyone and their mother has Discord or Messenger but does your
+          community have it's own app? ADL Does Now!
         </ThemedText>
       </ThemedView>
     </ParallaxScrollView>
@@ -52,19 +58,21 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: 8,
+    backgroundColor: "#FFFF00", // Add background color here
   },
   stepContainer: {
     gap: 8,
     marginBottom: 8,
+    backgroundColor: "#FFFF00",
   },
   reactLogo: {
-    height: 178,
-    width: 290,
+    height: 258,
+    width: 450,
     bottom: 0,
     left: 0,
-    position: 'absolute',
+    position: "absolute",
   },
 });
