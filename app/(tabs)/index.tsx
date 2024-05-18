@@ -1,78 +1,85 @@
 import { Image, StyleSheet, Platform } from "react-native";
-import {Link, Redirect} from "expo-router";
 import { HelloWave } from "@/components/HelloWave";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import React from "react";
-
+import {
+  GestureHandlerRootView,
+  PanGestureHandler,
+} from "react-native-gesture-handler";
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
-      headerImage={
-        <Image
-          source={require("@/assets/images/partial-adl-logo.png")}
-          style={styles.reactLogo}
-        />
-      }
-    >
-      <ThemedView
-        style={[styles.titleContainer, { backgroundColor: "#FFFF00" }]}
-      >
-        <ThemedText type="title" style={{ flexGrow: 1 }}>
-          Welcome to the ADL Community App!
-        </ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle" style={{ flexGrow: 1 }}>
-          Meetup:
-        </ThemedText>
-        <ThemedText style={{ flexGrow: 1 }}>
-          Meetup with fellow ADL memebers at various motorsport events such as
-          Formula Drift or Final Bout to name a few.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle" style={{ flexGrow: 1 }}>
-          Check-in:
-        </ThemedText>
-        <ThemedText style={{ flexGrow: 1 }}>
-          Check in to find out which members are attending events as either a
-          spectator or driver to show support for your fellow ADL members.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle" style={{ flexGrow: 1 }}>
-          Chat:
-        </ThemedText>
-        <ThemedText style={{ flexGrow: 1 }}>
-          Everyone and their mother has Discord or Messenger but does your
-          community have it's own app? ADL Does Now!
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+        <ParallaxScrollView
+          headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
+          headerImage={
+            <Image
+              source={require("@/assets/images/partial-adl-logo.png")}
+              style={styles.reactLogo}
+            />
+          }
+        >
+          <ThemedView style={styles.contentContainer}>
+            <ThemedText type="title" style={styles.titleText}>
+              Welcome to the ADL Community App! 👋
+            </ThemedText>
+            <HelloWave />
+
+            <ThemedText type="subtitle" style={styles.subtitleText}>
+              Meetup:
+            </ThemedText>
+            <ThemedText style={styles.descriptionText}>
+              Meetup with fellow ADL members at various motorsport events such
+              as Formula Drift or Final Bout to name a few.
+            </ThemedText>
+
+            <ThemedText type="subtitle" style={styles.subtitleText}>
+              Check-in:
+            </ThemedText>
+            <ThemedText style={styles.descriptionText}>
+              Check in to find out which members are attending events as either
+              a spectator or driver to show support for your fellow ADL members.
+            </ThemedText>
+
+            <ThemedText type="subtitle" style={styles.subtitleText}>
+              Chat:
+            </ThemedText>
+            <ThemedText style={styles.descriptionText}>
+              Everyone and their mother has Discord or Messenger but does your
+              community have its own app? ADL Does Now!
+            </ThemedText>
+          </ThemedView>
+        </ParallaxScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-    backgroundColor: "#FFFF00", // Add background color here
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-    backgroundColor: "#FFFF00",
+  contentContainer: {
+    backgroundColor: "#FFFF00", // Yellow background
+    padding: 20, // Padding around the content
+    marginHorizontal: 10, // Margin to add some space on the sides
+    borderRadius: 10, // Rounded corners to match the design
+    marginTop: -50, // Adjust margin to overlap with the header image
+    zIndex: 1, // Ensure it floats above other content
   },
   reactLogo: {
     height: 258,
-    width: 450,
-    bottom: 0,
-    left: 0,
-    position: "absolute",
+    width: "100%",
+    resizeMode: "cover", // Ensure the image covers the header area
+  },
+  titleText: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 20, // Space below the title
+  },
+  subtitleText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginTop: 20, // Space above each subtitle
+    marginBottom: 10, // Space below each subtitle
+  },
+  descriptionText: {
+    fontSize: 16,
+    marginBottom: 20, // Space below each description
   },
 });
