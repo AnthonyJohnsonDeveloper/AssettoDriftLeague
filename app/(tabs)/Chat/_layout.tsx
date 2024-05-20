@@ -1,18 +1,43 @@
-import { NavigationContainer } from "@react-navigation/native";
-import { Stack } from "expo-router";
-import React, { useEffect } from "react";
-import { StreamChat } from "stream-chat";
-import { Chat } from "stream-chat-expo";
+// chat/_layout.tsx
+import React, { useEffect } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { Chat, OverlayProvider } from 'stream-chat-expo';
+import client from './StreamChatConfig';
+import Index from './index';
 
-const API_KEY = "4qs628f6q3nc"
-const client = StreamChat.getInstance(API_KEY);
+const Stack = createStackNavigator();
 
-export default function ChatLoayout() {
+const Layout: React.FC = () => {
+  useEffect(() => {
+    const setupClient = async () => {
+      await client.connectUser(
+        {
+          id: 'user-id',
+          name: 'username',
+        },
+        client.devToken('user-id')
+      );
+    };
+
+    setupClient();
+
+    return () => {
+      client.disconnectUser();
+    };
+  }, []);
+
   return (
-    <Stack>
-      
-        <Stack.Screen name="index" options={{ title: "Messages" }} />
-      
-    </Stack>
+    <OverlayProvider>
+      <Chat client={client}>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name="Chat" getComponent={Messages} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </Chat>
+    </OverlayProvider>
   );
-}
+};
+
+export default Layout;

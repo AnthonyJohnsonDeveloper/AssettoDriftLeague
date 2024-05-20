@@ -1,15 +1,34 @@
-import React from "react";
-import { StreamChat } from "stream-chat";
-import { Chat, Channel, MessageList, OverlayProvider } from 'stream-chat-expo';
-const API_KEY = "4qs628f6q3nc";
-const client=StreamChat.getInstance(API_KEY);
+// chat/index.tsx
+import React, { useEffect, useState } from 'react';
+import { View, Text } from 'react-native';
+import { Channel, MessageList, MessageInput } from 'stream-chat-expo';
+import client from './StreamChatConfig';
 
-const ChatScreen = () => {
-  return 
+const Index: React.FC = () => {
+  const [channel, setChannel] = useState<any>(null);
+
+  useEffect(() => {
+    const setupChannel = async () => {
+      const channel = client.channel('messaging', 'general', {
+        name: 'General',
+      });
+      await channel.watch();
+      setChannel(channel);
+    };
+
+    setupChannel();
+  }, []);
+
+  if (!channel) {
+    return <Text>Loading...</Text>;
+  }
+
+  return (
+    <Channel channel={channel}>
+      <MessageList />
+      <MessageInput />
+    </Channel>
+  );
 };
 
-export default ChatScreen;
-
- // Ensure you export the ChatScreen component
-
-
+export default Index;

@@ -7,7 +7,9 @@ import 'react-native-reanimated';
 import { useColorScheme } from '@/hooks/useColorScheme'; // Assuming this is the correct path to the useColorScheme hook
 import React from 'react';
 import ChatScreen from './(tabs)/Chat';
+import Layout from './(tabs)/Chat/_layout';
 
+const App: React.FC = () => <Layout />;
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
