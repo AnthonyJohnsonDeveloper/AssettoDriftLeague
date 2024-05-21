@@ -32,7 +32,7 @@ const Index: React.FC = () => {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <OverlayProvider>
-        <Chat client={undefined}>
+        <Chat>
         </Chat>
       </OverlayProvider>
     </GestureHandlerRootView>
