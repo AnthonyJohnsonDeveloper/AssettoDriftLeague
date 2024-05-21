@@ -1,17 +1,19 @@
 // chat/index.tsx
 import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
-import { Channel, MessageList, MessageInput, Chat, OverlayProvider } from 'stream-chat-expo';
-import client from './StreamChatConfig';
+import { Channel, MessageList, MessageInput, Chat, OverlayProvider, DefaultStreamChatGenerics } from 'stream-chat-expo';
+
 
 import { NavigationContainer } from '@react-navigation/native';
 import { Stack } from 'expo-router';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { StreamChat } from 'stream-chat';
+
 
 const Index: React.FC = () => {
   const [channel, setChannel] = useState<any>(null);
 
-  useEffect(() => {
+  useEffect(() => {r
     const setupChannel = async () => {
       const channel = client.channel('messaging', 'general', {
         name: 'General',
@@ -30,11 +32,11 @@ const Index: React.FC = () => {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <OverlayProvider>
-        <Chat>
+        <Chat client={undefined}>
         </Chat>
       </OverlayProvider>
     </GestureHandlerRootView>
   );
 };
 
-export default Index;
+export default Chat;

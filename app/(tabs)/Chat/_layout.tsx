@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Chat, OverlayProvider } from 'stream-chat-expo';
-import client from './StreamChatConfig';
 import Index from './index';
 import { StreamChat } from 'stream-chat';
 
@@ -54,6 +53,6 @@ const Layout: React.FC<ChatProps> = ({ client }) => {
       </Chat>
     );
 };
-
+}
 export default Layout;
 
