@@ -1,8 +1,12 @@
 // chat/index.tsx
 import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
-import { Channel, MessageList, MessageInput } from 'stream-chat-expo';
+import { Channel, MessageList, MessageInput, Chat, OverlayProvider } from 'stream-chat-expo';
 import client from './StreamChatConfig';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { Stack } from 'expo-router';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const Index: React.FC = () => {
   const [channel, setChannel] = useState<any>(null);
@@ -24,10 +28,12 @@ const Index: React.FC = () => {
   }
 
   return (
-    <Channel channel={channel}>
-      <MessageList />
-      <MessageInput />
-    </Channel>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <OverlayProvider>
+        <Chat>
+        </Chat>
+      </OverlayProvider>
+    </GestureHandlerRootView>
   );
 };
 
